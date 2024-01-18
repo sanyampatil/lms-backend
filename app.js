@@ -1,8 +1,9 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import morgan from 'morgan'
+import userRouter from './routes/user.route.js'
 const app = express()
-
 
 // app.use(express().json)
 
@@ -13,6 +14,10 @@ const app = express()
 //     credential: true
 //   })
 // )
+
+app.use('api/v1/user/',userRouter)
+app.use(morgan("dev"))
+
 app.use(cookieParser())
 
 app.all('*', (req, res) => {
